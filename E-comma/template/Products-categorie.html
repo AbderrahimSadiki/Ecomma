@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Bannières Coopérative Yacout - Animation Slide-in-both Variation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ======================================================= */
+        /* 1. STYLES DE BASE (Code inchangé)  */
+        /* ======================================================= */
+        :root {
+            --primary-color: #7b4f30; 
+            --text-color-light: #ffffff;
+            --background-color: #ffffff;
+            --font-family-primary: 'Montserrat', sans-serif;
+            --border-frame-color: rgba(255, 255, 255, 0.7);
+            --shimmer-color: rgba(255, 255, 255, 0.7); 
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            min-height: 200vh; 
+        }
+
+        /* Styles de la Section Conteneur */
+        .custom-section {
+            padding: 60px 20px;
+            background-color: var(--background-color);
+        }
+
+        .custom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 25px; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .custom-column {
+            flex-basis: calc(33.333% - 17px);
+            min-width: 280px;
+            box-sizing: border-box;
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+            will-change: transform, box-shadow; 
+            
+            /* --- ETAT INITIAL (Générique) --- */
+            opacity: 0;
+        }
+        
+        /* ======================================================= */
+        /* NOUVELLE ANIMATION : Colonnes Extérieures Horizontales, Milieu Vertical */
+        /* ======================================================= */
+        
+        /* Colonne 1: Glisse de la GAUCHE */
+        .custom-column:nth-child(1) {
+            transform: translateX(-50px);
+        }
+
+        /* Colonne 2: Glisse du BAS */
+        .custom-column:nth-child(2) {
+            transform: translateY(50px);
+        }
+        
+        /* Colonne 3: Glisse de la DROITE */
+        .custom-column:nth-child(3) {
+            transform: translateX(50px);
+        }
+
+        /* Classe appliquée par JavaScript lorsque l'élément est visible */
+        .custom-column.is-visible {
+            opacity: 1;
+            /* Tous reviennent à l'état initial (pas de translation) */
+            transform: translate(0, 0); 
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        /* Délai progressif inchangé */
+        .custom-column:nth-child(1).is-visible {
+            transition-delay: 0s;
+        }
+        .custom-column:nth-child(2).is-visible {
+            transition-delay: 0.15s;
+        }
+        .custom-column:nth-child(3).is-visible {
+            transition-delay: 0.3s;
+        }
+        
+        /* Hover gère le scale up */
+        .custom-column:hover {
+            transform: scale(1.05) translate(0, 0); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+            z-index: 10; 
+        }
+
+        /* Le reste du code CSS (Bannières, Shimmer, Contenu, Media Queries) est inchangé... */
+        
+        .custom-banner {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            text-align: center; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            min-height: 350px;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+        }
+        .custom-banner img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .custom-banner:not(:first-child) .image-overlay::before {
+            content: '';
+            position: absolute;
+            top: 15px; 
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid var(--border-frame-color);
+            opacity: 1; 
+        }
+
+        .shimmer-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4; 
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                var(--shimmer-color) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-30deg) translateX(-100%);
+            transition: transform 0.8s ease-in-out; 
+            opacity: 0; 
+        }
+        .custom-column:hover .shimmer-effect::after {
+            transform: skewX(-30deg) translateX(350%);
+            opacity: 1; 
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 5; 
+            padding: 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); 
+        }
+        .banner-content-1 .banner-button-wrap {
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            display: inline-block;
+            padding: 5px; 
+        }
+        .banner-title {
+            margin: 0 0 15px 0;
+            font-size: 1.7em;
+            font-weight: 600;
+            color: var(--text-color-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .banner-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--primary-color); 
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .custom-column:hover .shimmer-effect::after {
+            transform: skewX(-30deg) translateX(350%);
+            opacity: 1; 
+        }
+        
+        @media (max-width: 992px) {
+            .custom-column {
+                flex-basis: calc(50% - 15px); 
+            }
+        }
+        @media (max-width: 600px) {
+            .custom-column:hover {
+                transform: scale(1.02); 
+            }
+            /* Sur mobile, l'animation revient au slide vertical pour ne pas pousser le contenu */
+            .custom-column:nth-child(1),
+            .custom-column:nth-child(3) {
+                transform: translateY(50px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="custom-section">
+    <div class="custom-container">
+        
+        <div class="custom-column" onclick="window.open('https://cooperativeyacout.com/product-category/cadeaux/','_blank')">
+            <div class="custom-banner banner-1">
+                <img loading="lazy" decoding="async" src="https://cooperativeyacout.com/wp-content/uploads/2023/07/IMG_2327.jpg" alt="Image de cadeaux" />
+                <div class="image-overlay"></div>
+                <div class="shimmer-effect"></div>
+                <div class="banner-content banner-content-1">
+                    <h2 class="banner-title"><span>Nos Cadeau</span></h2>
+                    <div class="button-wrap banner-button-wrap">
+                        <div class="banner-button">Je découvre</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-column" onclick="window.open('https://cooperativeyacout.com/product-category/solaire/','_blank')">
+            <div class="custom-banner banner-2">
+                <img loading="lazy" decoding="async" src="https://cooperativeyacout.com/wp-content/uploads/2023/08/CADEAUX-GIFT-OIL-BODY-SUMMER-ETE-2023-YACOUT-COOPERATIVE-MAROC-FEMMES-MAROCAINES-FABRIQUE-ARTISANAT-MADE-IN-MOROCCO-MAGHRIB-ARAB-2.png" alt="Image de produits solaires" />
+                <div class="image-overlay"></div>
+                <div class="shimmer-effect"></div>
+                <div class="banner-content">
+                    <h2 class="banner-title"><span>Sélection Solaire</span></h2>
+                    <div class="button-wrap">
+                        <div class="banner-button">Je découvre</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-column" onclick="window.open('https://cooperativeyacout.com/product-category/maison/','_blank')">
+            <div class="custom-banner banner-3">
+                <img loading="lazy" decoding="async" src="https://cooperativeyacout.com/wp-content/uploads/2023/07/PARFUM-DIFUSEUR-ROSE-KALAAT-MGOUNA-KALAA-GOUNA-TRADITIONNELLE-FLEUR-DORANGER-COOPERATIVE-YACOUT-SENTEUR-PARFUM-JAUNE-ROUGE-MAROC-PRODUIT-MAROCAIN-MADE-IN-MOROCCO.png" alt="Image de parfum" />
+                <div class="image-overlay"></div>
+                <div class="shimmer-effect"></div>
+                <div class="banner-content">
+                    <h2 class="banner-title"><span>Nouveau Parfum</span></h2>
+                    <div class="button-wrap">
+                        <div class="banner-button">Je découvre</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // =======================================================
+    // 2. JAVASCRIPT pour l'animation au Scroll (Intersection Observer inchangé)
+    // =======================================================
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Sélectionne tous les éléments cibles
+        const columns = document.querySelectorAll('.custom-column');
+
+        // Options de l'Intersection Observer
+        const observerOptions = {
+            root: null, 
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        // Fonction de callback
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                // Si l'élément est dans le viewport
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Arrêter d'observer
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        // Création de l'Observer et attachement
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        columns.forEach(column => {
+            observer.observe(column);
+        });
+    });
+</script>
+
+</body>
+</html>

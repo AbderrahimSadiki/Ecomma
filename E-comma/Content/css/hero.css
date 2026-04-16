@@ -1,0 +1,520 @@
+/* Hero Carousel Styles */
+:root {
+    --bs-primary: #c4a066;
+    --bs-secondary: #431b00;
+    --bs-white: #fff;
+}
+
+/* Hero layout */
+.carousel {
+    background: #f8f9fa;
+}
+
+.header-carousel {
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+}
+
+.header-carousel .header-carousel-track {
+    display: flex;
+    transition: transform .6s ease;
+    height: 100%;
+    align-items: stretch;
+}
+
+.header-carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header-carousel .carousel-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Carousel nav buttons */
+.hero-nav {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 50;
+}
+
+.hero-nav button {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    border: 0;
+    background: #c4a066;
+    color: var(--bs-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.hero-nav button:hover {
+    background: #431b00;
+}
+
+/* Root: make carousel row columns stretch equally */
+.carousel .row {
+    align-items: stretch;
+}
+
+/* Banner on right */
+.carousel-header-banner {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-header-banner img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-banner-offer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 6;
+}
+
+.carousel-banner {
+    position: absolute;
+    inset: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, .28);
+    z-index: 5;
+}
+
+.carousel-banner .btn {
+    z-index: 7;
+    align-self: center;
+}
+
+.carousel-banner-content a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.carousel-banner-content .fs-3 {
+    font-weight: 700;
+}
+
+/* Content styling */
+.carousel-content h4 {
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.carousel-content h1 {
+    font-size: 2.8rem;
+    line-height: 1.05;
+}
+
+.carousel-content p {
+    color: #333;
+}
+
+/* Responsive tweaks */
+@media(min-width:1200px) {
+    .carousel-content h1 {
+        font-size: 3.2rem;
+    }
+}
+
+@media(max-width:991px) {
+    .hero-nav {
+        right: 20px;
+    }
+}
+
+/* ========== Services Section ========== */
+.service-item {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.service-item i {
+    font-size: 32px;
+    color: #c4a066 !important;
+    min-width: 44px;
+}
+
+.service-item h6 {
+    font-size: 0.95rem;
+    margin: 0 0 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.service-item p {
+    margin: 0;
+    color: #666;
+}
+
+@media (max-width: 576px) {
+    .service-item i {
+        font-size: 28px;
+    }
+
+    .service-item h6 {
+        font-size: 0.85rem;
+    }
+}
+
+/* ========== Products Categories Section ========== */
+.custom-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+}
+
+.custom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.custom-column {
+    flex-basis: calc(33.333% - 17px);
+    min-width: 280px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    will-change: transform, box-shadow;
+    opacity: 0;
+}
+
+.custom-column:nth-child(1) {
+    transform: translateX(-50px);
+}
+
+.custom-column:nth-child(2) {
+    transform: translateY(50px);
+}
+
+.custom-column:nth-child(3) {
+    transform: translateX(50px);
+}
+
+.custom-column.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.custom-column:nth-child(1).is-visible {
+    transition-delay: 0s;
+}
+
+.custom-column:nth-child(2).is-visible {
+    transition-delay: 0.15s;
+}
+
+.custom-column:nth-child(3).is-visible {
+    transition-delay: 0.3s;
+}
+
+.custom-column:hover {
+    transform: scale(1.05) translate(0, 0);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.custom-banner {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-banner img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.custom-banner:not(:first-child) .image-overlay::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    opacity: 1;
+}
+
+.shimmer-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.shimmer-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-30deg) translateX(-100%);
+    transition: transform 0.8s ease-in-out;
+    opacity: 0;
+}
+
+.custom-column:hover .shimmer-effect::after {
+    transform: skewX(-30deg) translateX(350%);
+    opacity: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 5;
+    padding: 20px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.banner-content-1 .banner-button-wrap {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    padding: 5px;
+}
+
+.banner-title {
+    margin: 0 0 15px 0;
+    font-size: 1.7em;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #c4a066;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: background-color 0.3s;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 992px) {
+    .custom-column {
+        flex-basis: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 600px) {
+    .custom-column:hover {
+        transform: scale(1.02);
+    }
+
+    .custom-column:nth-child(1),
+    .custom-column:nth-child(3) {
+        transform: translateY(50px);
+    }
+}
+/* ========== Promotions Section ========== */
+.promotions-section {
+    padding: 60px 20px;
+    background-color: white;
+}
+
+.promotions-section .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.promotions-section .section-header {
+    margin-bottom: 40px;
+}
+
+.promotions-section .section-header h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    display: inline-block;
+    position: relative;
+    color: #c4a066;
+}
+
+.promotions-section .section-header h4::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #431b00;
+    margin: 5px auto 0;
+}
+
+.promotions-section .section-header p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 15px;
+    font-weight: 300;
+}
+
+.promo-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.promo-product-card {
+    background-color: white;
+    text-align: left;
+}
+
+.promo-product-image-wrapper {
+    position: relative;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.promo-product-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.promo-product-card:hover .promo-product-image {
+    transform: scale(1.0);
+}
+
+.promo-product-details {
+    padding: 0;
+    min-height: 80px;
+}
+
+.promo-product-category {
+    font-size: 11px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    margin-bottom: 2px;
+}
+
+.promo-product-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #331f1f;
+    line-height: 1.3;
+    margin-bottom: 5px;
+    min-height: 36px;
+}
+
+.promo-product-price {
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.promo-product-price .new-price {
+    font-weight: 600;
+    color: #331f1f;
+}
+
+.promo-product-price .old-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #999;
+    margin-right: 5px;
+    font-weight: 400;
+}
+
+@media (max-width: 992px) {
+    .promo-product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+}
+
+@media (max-width: 576px) {
+    .promotions-section { padding: 30px 10px; }
+    .promo-product-grid { grid-template-columns: 1fr; }
+}
+
+/* ========== Staggered Fade-in Animation for Promo Cards ========== */
+.promo-product-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.promo-product-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.promo-product-card:nth-child(1).is-visible { transition-delay: 0s; }
+.promo-product-card:nth-child(2).is-visible { transition-delay: 0.1s; }
+.promo-product-card:nth-child(3).is-visible { transition-delay: 0.2s; }
+.promo-product-card:nth-child(4).is-visible { transition-delay: 0.3s; }
+.promo-product-card:nth-child(5).is-visible { transition-delay: 0.4s; }
+.promo-product-card:nth-child(6).is-visible { transition-delay: 0.5s; }
+.promo-product-card:nth-child(7).is-visible { transition-delay: 0.6s; }
+.promo-product-card:nth-child(8).is-visible { transition-delay: 0.7s; }

@@ -1,0 +1,250 @@
+/* About page styles aligned with site theme */
+:root {
+    --about-gold: #c4a066;
+    --about-dark: #431b00;
+    --about-cream: #fdf7ec;
+    --about-ivory: #f1e3cf;
+    --about-text: #5b4630;
+}
+
+.about-hero {
+    background: linear-gradient(120deg, var(--about-cream) 0%, var(--about-ivory) 100%);
+    border-radius: 24px;
+    padding: 48px 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eadcc9;
+}
+
+.about-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.about-hero::before,
+.about-hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(196, 160, 102, 0.18);
+}
+
+.about-hero::before {
+    width: 220px;
+    height: 220px;
+    left: -80px;
+    top: 30px;
+}
+
+.about-hero::after {
+    width: 160px;
+    height: 160px;
+    right: -50px;
+    bottom: -40px;
+}
+
+.about-kicker {
+    color: var(--about-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.about-title {
+    color: var(--about-dark);
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.about-lead {
+    color: var(--about-text);
+    font-size: 1.05rem;
+    margin-bottom: 22px;
+}
+
+.btn-ghost {
+    border: 1px solid var(--about-dark);
+    color: var(--about-dark);
+    background: #fff;
+    font-weight: 600;
+}
+
+.btn-ghost:hover {
+    background: var(--about-dark);
+    color: #fff;
+}
+
+.about-highlight {
+    background: #fffaf4;
+    border-radius: 18px;
+    border: 1px solid #e6d6c2;
+    padding: 24px;
+    box-shadow: 0 22px 44px rgba(67, 27, 0, 0.12);
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #eadcc9;
+    border-radius: 14px;
+    padding: 16px;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(67, 27, 0, 0.06);
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--about-dark);
+}
+
+.stat-label {
+    color: var(--about-text);
+    font-size: 0.9rem;
+}
+
+.about-quote {
+    border-left: 3px solid var(--about-gold);
+    padding: 12px 14px;
+    color: var(--about-text);
+    margin-top: 18px;
+    font-style: italic;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px dashed #e6d6c2;
+}
+
+.about-section {
+    padding: 70px 0;
+}
+
+.section-title {
+    color: var(--about-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    color: var(--about-text);
+    max-width: 640px;
+    margin: 0 auto 38px;
+}
+
+.about-card {
+    background: #fff;
+    border: 1px solid #efe4d6;
+    border-radius: 16px;
+    padding: 26px;
+    height: 100%;
+    box-shadow: 0 16px 32px rgba(67, 27, 0, 0.08);
+}
+
+.about-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--about-gold);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+}
+
+.about-card h3 {
+    color: var(--about-dark);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.about-card p {
+    color: var(--about-text);
+    margin-bottom: 0;
+}
+
+.story-image {
+    border-radius: 18px;
+    border: 1px solid #eadcc9;
+    box-shadow: 0 18px 36px rgba(67, 27, 0, 0.1);
+}
+
+.about-timeline {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 2px solid #eadcc9;
+    margin: 24px 0 0;
+}
+
+.about-timeline li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 22px;
+}
+
+.about-timeline li::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: var(--about-gold);
+    border-radius: 50%;
+    position: absolute;
+    left: -7px;
+    top: 6px;
+}
+
+.about-timeline h4 {
+    color: var(--about-dark);
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.about-timeline p {
+    color: var(--about-text);
+    margin-bottom: 0;
+}
+
+.about-cta {
+    background: var(--about-dark);
+    border-radius: 20px;
+    padding: 32px;
+    color: #fff;
+}
+
+.about-cta h3 {
+    margin-bottom: 8px;
+}
+
+.about-cta p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .about-title {
+        font-size: 2.2rem;
+    }
+
+    .about-section {
+        padding: 50px 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .about-hero {
+        padding: 36px 0;
+    }
+
+    .about-title {
+        font-size: 1.9rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+}

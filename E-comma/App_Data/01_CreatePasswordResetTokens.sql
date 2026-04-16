@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[PasswordResetTokens] (
+    [Id] UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    [UserId] UNIQUEIDENTIFIER NOT NULL,
+    [Token] UNIQUEIDENTIFIER NOT NULL,
+    [ExpiryDate] DATETIME NOT NULL,
+    [IsUsed] BIT DEFAULT 0,
+    FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([Id])
+);

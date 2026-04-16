@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>E-comma - E-commanics Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries & Base CSS (keep CDN for base libs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Hero component styles (self-contained below) -->
+    <style>
+        :root {
+            --bs-primary: #e1251a;
+            --bs-secondary: #6c757d;
+            --bs-white: #fff;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+        }
+
+        /* Hero layout */
+        .carousel {
+            background: #f8f9fa;
+        }
+
+        .header-carousel {
+            position: relative;
+            overflow: hidden;
+            min-height: 420px;
+        }
+
+        .header-carousel .header-carousel-track {
+            display: flex;
+            transition: transform .6s ease;
+            height: 100%;
+            align-items: stretch;
+        }
+
+        .header-carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .header-carousel .carousel-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Carousel nav buttons */
+        .hero-nav {
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 50
+        }
+
+        .hero-nav button {
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            border: 0;
+            background: var(--bs-primary);
+            color: var(--bs-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer
+        }
+
+        .hero-nav button:hover {
+            background: var(--bs-secondary)
+        }
+
+        /* Root: make carousel row columns stretch equally */
+        .carousel .row {
+            align-items: stretch;
+        }
+
+        /* Banner on right */
+        .carousel-header-banner {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-header-banner img {
+            object-fit: cover;
+            height: 100%;
+        }
+
+        .carousel-banner-offer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 6
+        }
+
+        .carousel-banner {
+            position: absolute;
+            inset: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background: rgba(0, 0, 0, .28);
+            z-index: 5
+        }
+
+        .carousel-banner .btn {
+            z-index: 7
+        }
+
+        .carousel-banner-content a {
+            color: #fff;
+            text-decoration: none
+        }
+
+        .carousel-banner-content .fs-3 {
+            font-weight: 700
+        }
+
+        .carousel-banner .btn {
+            align-self: center
+        }
+
+        /* Content styling */
+        .carousel-content h4 {
+            letter-spacing: 3px;
+            font-weight: 700
+        }
+
+        .carousel-content h1 {
+            font-size: 2.8rem;
+            line-height: 1.05
+        }
+
+        .carousel-content p {
+            color: #333
+        }
+
+        .btn-primary {
+            background: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: var(--bs-white);
+        }
+
+        /* Responsive tweaks */
+        @media(min-width:1200px) {
+            .carousel-content h1 {
+                font-size: 3.2rem
+            }
+        }
+
+        @media(max-width:991px) {
+            .hero-nav {
+                right: 20px
+            }
+        }
+
+        /* Mettre à la fin de ton <style> ou dans un fichier chargé après Bootstrap */
+        :root {
+            --bs-primary: #e1251a;
+        }
+
+        /* Forcer les utilitaires bootstrap "primary" */
+        .text-primary {
+            color: #e1251a !important;
+        }
+
+        .bg-primary {
+            background-color: #e1251a !important;
+        }
+
+        .btn-primary {
+            background-color: #e1251a !important;
+            border-color: #e1251a !important;
+            color: #ffffff !important;
+        }
+
+        .btn-primary:hover {
+            background-color: #b21712 !important;
+            /* version plus sombre au survol */
+            border-color: #b21712 !important;
+        }
+
+        /* Flèches du carousel et autres boutons personnalisés */
+        .hero-nav button,
+        .carousel-banner .btn,
+        .carousel-banner-offer .bg-primary {
+            background: #e1251a !important;
+            border-color: #e1251a !important;
+            color: #ffffff !important;
+        }
+
+        .text-primary.fs-5,
+        .carousel-banner-content .text-primary {
+            color: #e1251a !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Carousel Start -->
+    <div class="container-fluid carousel bg-light px-0">
+        <div class="row g-0 justify-content-end">
+            <div class="col-12 col-lg-7 col-xl-9">
+                <div class="header-carousel bg-light py-5">
+                    <div class="header-carousel-track">
+                        <div class="row g-0 header-carousel-item align-items-center">
+                            <div class="col-xl-6 carousel-img">
+                                <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/13-laptop-platinum-right-render-fy25:VP4-1260x795?fmt=png-alpha"
+                                    class="img-fluid w-100" alt="Image">
+                            </div>
+                            <div class="col-xl-6 carousel-content p-4">
+                                <h4 class="text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Save Up To A DH 400
+                                </h4>
+                                <h1 class="display-3 text-capitalize mb-4">On Selected
+                                    Laptops & Desktop Or Parfum d’intérieur Cannelle et orange</h1>
+                                <p class="text-dark">Terms and Condition Apply</p>
+                                <a class="btn btn-primary rounded-pill py-3 px-5" href="#">Shop Now</a>
+                            </div>
+                        </div>
+                        <div class="row g-0 header-carousel-item align-items-center">
+                            <div class="col-xl-6 carousel-img">
+                                <img src="https://codi-one.fr/images/blog/2-Plateforme-Marketplace-definition-1657753298.jpg"
+                                    class="img-fluid w-100" alt="Image">
+                            </div>
+                            <div class="col-xl-6 carousel-content p-4">
+                                <h4 class="text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Save Up To A DH 200
+                                </h4>
+                                <h1 class="display-3 text-capitalize mb-4">On Selected
+                                    Laptops & Desktop Or Parfum d’intérieur Cannelle et orange</h1>
+                                <p class="text-dark">Terms and Condition Apply</p>
+                                <a class="btn btn-primary rounded-pill py-3 px-5" href="#">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation -->
+                    <div class="hero-nav" aria-hidden="false">
+                        <button class="hero-prev" aria-label="Previous slide"><i class="bi bi-arrow-left"></i></button>
+                        <button class="hero-next" aria-label="Next slide"><i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 col-xl-3">
+                <div class="carousel-header-banner h-100">
+                    <img src="https://img.freepik.com/premium-photo/shocked-guy-pointing-white-empty-Parfum d’intérieur Cannelle et orange-screen_116547-17037.jpg"
+                        class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Image">
+                    <div class="carousel-banner-offer">
+                        <p class="bg-primary text-white rounded fs-5 py-2 px-4 mb-0 me-3">Save DH 48.00</p>
+                        <p class="text-primary fs-5 fw-bold mb-0">Special Offer</p>
+                    </div>
+                    <div class="carousel-banner">
+                        <div class="carousel-banner-content text-center p-4">
+                            <a href="#" class="d-block mb-2">Parfum d’intérieur Cannelle et orange</a>
+                            <a href="#" class="d-block text-white fs-3">Nouveau Parfum<br> G2356</a>
+                            <del class="me-2 text-white fs-5">DH 1,250.00</del>
+                            <span class="text-primary fs-5">DH 1,050.00</span>
+                        </div>
+                        <a href="#" class="btn btn-primary rounded-pill py-2 px-4"><i
+                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+    <!-- JavaScript (Bootstrap bundle only) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.querySelector('.header-carousel');
+            if (!carousel) return;
+            const track = carousel.querySelector('.header-carousel-track');
+            const slides = Array.from(track.querySelectorAll('.header-carousel-item'));
+            const prevBtn = carousel.querySelector('.hero-prev');
+            const nextBtn = carousel.querySelector('.hero-next');
+            let index = 0;
+            const slideCount = slides.length || 0;
+            const autoplaySpeed = 4000;
+            let interval;
+
+            function updateSlide() {
+                track.style.transform = 'translateX(' + (-index * 100) + '%)';
+                slides.forEach((s, i) => {
+                    const content = s.querySelector('.carousel-content');
+                    const img = s.querySelector('.carousel-img');
+                    if (i === index) {
+                        s.classList.add('active');
+                        if (content) {
+                            content.classList.remove('animate__animated', 'animate__fadeOutRight');
+                            content.classList.add('animate__animated', 'animate__fadeInRight');
+                        }
+                        if (img) {
+                            img.classList.remove('animate__fadeOutLeft');
+                            img.classList.add('animate__animated', 'animate__fadeInLeft');
+                        }
+                    } else {
+                        s.classList.remove('active');
+                        if (content) {
+                            content.classList.remove('animate__fadeInRight');
+                            content.classList.add('animate__animated', 'animate__fadeOutRight');
+                        }
+                        if (img) {
+                            img.classList.remove('animate__fadeInLeft');
+                            img.classList.add('animate__animated', 'animate__fadeOutLeft');
+                        }
+                    }
+                });
+            }
+
+            function nextSlide() { index = (index + 1) % slideCount; updateSlide(); }
+            function prevSlide() { index = (index - 1 + slideCount) % slideCount; updateSlide(); }
+
+            if (nextBtn) nextBtn.addEventListener('click', function () { nextSlide(); resetInterval(); });
+            if (prevBtn) prevBtn.addEventListener('click', function () { prevSlide(); resetInterval(); });
+
+            function resetInterval() {
+                if (interval) clearInterval(interval);
+                interval = setInterval(nextSlide, autoplaySpeed);
+            }
+            if (slideCount > 1) {
+                interval = setInterval(nextSlide, autoplaySpeed);
+                carousel.addEventListener('mouseenter', () => clearInterval(interval));
+                carousel.addEventListener('mouseleave', resetInterval);
+            }
+            updateSlide();
+        });
+    </script>
+</body>
+
+</html>

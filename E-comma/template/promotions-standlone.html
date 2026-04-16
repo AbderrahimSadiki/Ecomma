@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section Promotions - Réplication Exacte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables et Styles Généraux */
+        :root {
+            --color-text-dark: #331f1f; 
+            --color-primary: #5A3A3A; 
+            --color-background: #fdfdfd; 
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --price-old-color: #999; 
+            --border-color: #e5e5e5;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background-color: var(--color-background);
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        .promotions-section {
+            padding: 60px 20px;
+            background-color: white; 
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* --- En-tête de la section (Taille du titre et ligne sous le titre) --- */
+        .section-header {
+            margin-bottom: 40px;
+        }
+        
+        .section-header h4 {
+            font-family: var(--font-title);
+            font-size: 38px; 
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            display: inline-block;
+            position: relative;
+            color: var(--color-primary);
+        }
+
+        /* Ligne sous le titre "Promotions" (Ligne plus épaisse et sombre) */
+        .section-header h4::after {
+            content: '';
+            display: block;
+            width: 80px; 
+            height: 3px; 
+            background-color: #333333; 
+            margin: 5px auto 0;
+        }
+
+        .section-header p {
+            font-size: 14px;
+            color: #777;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        /* --- Grille des produits --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px; 
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* --- Styles de la carte produit --- */
+        .product-card {
+            background-color: white;
+            text-align: left; 
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            background-color: white;
+            border: 1px solid var(--border-color); 
+            padding: 10px; 
+            margin-bottom: 10px;
+            overflow: hidden; 
+        }
+
+        .product-image {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 1/1; 
+            transform: scale(1.05); 
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.0);
+        }
+
+        .product-details {
+            padding: 0; 
+            min-height: 80px; 
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 400; 
+            color: var(--color-text-dark);
+            line-height: 1.3;
+            margin-bottom: 5px;
+            min-height: 36px; 
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: 400;
+            white-space: nowrap; 
+        }
+
+        .product-price span.new-price {
+            font-weight: 600; 
+            color: var(--color-text-dark);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            font-size: 14px; 
+            color: var(--price-old-color);
+            margin-right: 5px;
+            font-weight: 400;
+        }
+        
+        .currency {
+            font-weight: 400;
+            font-size: 100%;
+            margin-left: 2px;
+        }
+        
+        .product-price.variable-price {
+            font-size: 13px; 
+        }
+
+        /* --- ANIMATION CSS AJOUTÉE --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0; /* Commence invisible */
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        /* Délai pour l'effet de cascade sur les cartes produits */
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .promotions-section {
+                padding: 30px 10px;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="promotions-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h4>Promotions</h4>
+                <p>Ne ratez pas nos promotions exclusives</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/06/COFFRET-GOURMET-TERROIR-DARGAN-AGANIA-SPINOSA-KERNEL-OIL-SOAP-DE-GRAINES-DE-FESSI-YACOUT-COOPERATIVE-MAROC-FEMMES-MAROCAINES-FABRIQUE-ARTISANAT-MADE-IN-MOROCCO-MAGHRIB-9-768x764.png" 
+                            alt="Coffret douceur du Maroc">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">ALIMENTAIRE</div>
+                        <div class="product-title">Coffret douceur du Maroc</div>
+                        <div class="product-price">
+                            <span class="old-price">295.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">265.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                         <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/06/HUILE-DE-BAIN-50-ML-AMANDE-ARGAN-ALMONDES-PETALES-DAMANDIER-MASSAGE-COOPERATIVE-YACOUT-BERBER-600x600.png" 
+                            alt="Huile de bain pétale d'amandier">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">HUILES</div>
+                        <div class="product-title">Huile de bain pétale d'amandier</div>
+                        <div class="product-price">
+                            <span class="old-price">150.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">119.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/07/MASQUE-MASK-AKER-FASSI-ARGAN-AKKER-EL-FASI-ECLAIRCISSANT-CORPS-BODY-COOPERATIVE-YACOUT-PRODUIT-NATUREL-MAROCAIN-MADE-IN-MOROCCO-RABAT-CASABLANCA-ARGAN-OIL-600x599.png" 
+                            alt="Masque éclaircissant Aker el Fassi">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">TONIFIER VOTRE CORPS</div>
+                        <div class="product-title">Masque éclaircissant Aker el Fassi</div>
+                        <div class="product-price">
+                            <span class="old-price">140.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">99.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/06/CREME-EXFOLIANTE-ARGILE-ROUGE-CREAM-SCRUB-RED-CLAY-ARGANOIL-YACOUT-COOPERATIVE-MAROC-FEMMES-MAROCAINES-FABRIQUE-ARTISANAT-MADE-IN-MOROCCO-MAGHRIB-RED-ROUGE-600x600.png" 
+                            alt="Crème exfoliante Argile rouge et cannelle">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">CRÈMES</div>
+                        <div class="product-title">Crème exfoliante Argile rouge et cannelle</div>
+                        <div class="product-price">
+                            <span class="old-price">95.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">72.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/07/PARFUM-ORANGE-BLOSSOM-VERT-VERVEINE-LA-ROSE-ORIENT-BOUGIE-TRADITIONNELLE-FLEUR-DORANGER-COOPERATIVE-YACOUT-SENTEUR-PARFUM-JAUNE-ROUGE-MAROC-PRODUIT-MAROCAIN-MADE-IN-MOROCCO-600x600.png" 
+                            alt="Parfum d'intérieur Fleur d'oranger">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">PARFUM D'INTÉRIEUR</div>
+                        <div class="product-title">Parfum d'intérieur Fleur d'oranger</div>
+                        <div class="product-price variable-price">
+                            ~62.00 <span class="currency">د.م.</span> – 149.00 <span class="currency">د.م.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/10/1202386C-7817-4D7D-82F7-C485B2591257-600x600.jpg" 
+                            alt="Coffret Fleur d'oranger">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">COSMÉTIQUE</div>
+                        <div class="product-title">Coffret Fleur d'oranger</div>
+                        <div class="product-price">
+                            <span class="old-price">395.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">360.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/10/4EADB896-26E3-4044-A1F2-C0DBD548BFFD-600x600.jpg" 
+                            alt="Coffret Rose">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">COSMÉTIQUE</div>
+                        <div class="product-title">Coffret Rose</div>
+                        <div class="product-price">
+                            <span class="old-price">390.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">365.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card fade-in">
+                    <div class="product-image-wrapper">
+                        <a href="#">
+                            <img loading="lazy" class="product-image" 
+                            src="https://cooperativeyacout.com/wp-content/uploads/2023/10/CBCD36C3-3A5F-451F-998C-41BB35FECFFB-600x600.jpg" 
+                            alt="Coffret Verveine">
+                        </a>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">COSMÉTIQUE</div>
+                        <div class="product-title">Coffret Verveine</div>
+                        <div class="product-price">
+                            <span class="old-price">395.00 <span class="currency">د.م.</span></span>
+                            <span class="new-price">360.00 <span class="currency">د.م.</span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

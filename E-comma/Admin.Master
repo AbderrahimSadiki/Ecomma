@@ -1,0 +1,140 @@
+<%@ Master Language="C#" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - E-comma Admin</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Admin CSS -->
+    <link href="~/Content/css/admin.css" rel="stylesheet" />
+    
+    <script runat="server">
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // Security Check
+            if (Session["UserEmail"] == null)
+            {
+                SafeRedirect("~/Views/Auth/Login.aspx?ReturnUrl=" + HttpUtility.UrlEncode(Request.RawUrl));
+            }
+            else
+            {
+                // Security Check based on Role
+                if (Session["UserRole"] == null || !Session["UserRole"].ToString().Equals("Admin", StringComparison.OrdinalIgnoreCase))
+                {
+                     SafeRedirect("~/Views/Public/Home.aspx");
+                }
+            }
+        }
+        
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            System.Web.Security.FormsAuthentication.SignOut();
+            SafeRedirect("~/Views/Public/Home.aspx");
+        }
+
+        private void SafeRedirect(string url)
+        {
+            Response.Redirect(url, false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body class="admin-layout">
+    <form id="form1" runat="server" enctype="multipart/form-data">
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar -->
+            <div class="admin-sidebar" id="sidebar-wrapper">
+                <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                    <i class="bi bi-speedometer2 me-2"></i>E-comma
+                </div>
+                <div class="list-group list-group-flush my-3">
+                    <a href="/Views/Admin/Dashboard.aspx" class="list-group-item list-group-item-action bg-transparent second-text active">
+                        <i class="bi bi-grid me-2"></i>Dashboard
+                    </a>
+                    <a href="/Views/Admin/Dashboard.aspx#categories" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                        <i class="bi bi-collection me-2"></i>Categories
+                    </a>
+                    <a href="/Views/Admin/Dashboard.aspx#products" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                        <i class="bi bi-box-seam me-2"></i>Produits
+                    </a>
+                    <a href="/Views/Admin/Dashboard.aspx#users" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                        <i class="bi bi-people me-2"></i>Utilisateurs
+                    </a>
+                    <a href="/Views/Admin/Orders.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                        <i class="bi bi-bag-check me-2"></i>Commandes
+                    </a>
+                   <a href="/Views/Admin/StockManagement.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                        <i class="bi bi-boxes me-2"></i>Stock
+                    </a>
+                     <a href="/Views/Admin/DeliveryManagement.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                        <i class="bi bi-truck me-2"></i>Livraison
+                    </a>
+                    <a href="/Views/Public/Home.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                         <i class="bi bi-house-door me-2"></i>Site Public
+                    </a>
+                     <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CssClass="list-group-item list-group-item-action bg-transparent text-danger fw-bold">
+                        <i class="bi bi-box-arrow-left me-2"></i>Deconnexion
+                    </asp:LinkButton>
+                </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-list fs-3 me-3" id="menu-toggle" style="cursor: pointer;"></i>
+                        <h2 class="fs-4 m-0">Admin Dashboard</h2>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle me-2"></i>Admin
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="../User/Profile.aspx">Profil</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="container-fluid px-4">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
+</body>
+</html>

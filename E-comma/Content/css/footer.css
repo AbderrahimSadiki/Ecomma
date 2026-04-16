@@ -1,0 +1,101 @@
+/* Définition des couleurs principales basées sur le thème */
+:root {
+    --bs-primary: #c4a066;
+    --bs-secondary: #431b00;
+    --bs-dark: #431b00;
+    --bs-light: #f2f3f5;
+}
+
+/* Override Bootstrap text-primary */
+.text-primary {
+    color: #c4a066 !important;
+}
+
+/* --- Styles du Footer --- */
+.footer {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+    margin-top: 6rem;
+}
+
+.footer .btn.btn-primary {
+    color: #fff;
+    background-color: #c4a066;
+    border-color: #c4a066;
+}
+
+.footer .btn.btn-primary:hover {
+    background-color: #431b00;
+    border-color: #431b00;
+}
+
+/* Couleur des icones cerclées */
+.rounded-circle i {
+    color: #c4a066 !important;
+}
+
+/* Styles des liens dans le footer */
+.footer-item h4 {
+    color: #fff;
+}
+
+.footer-item a {
+    line-height: 35px;
+    color: #999999;
+    transition: 0.5s;
+    text-decoration: none;
+    display: block;
+}
+
+.footer-item a:hover {
+    letter-spacing: 1px;
+    color: #c4a066;
+}
+
+.footer-item p {
+    color: #999999;
+}
+
+/* Input Newsletter */
+.footer .form-control {
+    border-color: rgba(256, 256, 256, .1);
+    background: rgba(256, 256, 256, .1);
+    color: #fff;
+}
+
+.footer .form-control::placeholder {
+    color: #999999;
+}
+
+/* --- Copyright --- */
+.copyright {
+    background-color: #2a1100;
+    color: #999999;
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.copyright a {
+    color: #c4a066 !important;
+    text-decoration: none;
+}
+
+.copyright a:hover {
+    color: #fff !important;
+}
+
+/* --- Back to Top Button --- */
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 30px;
+    z-index: 99;
+    color: #fff;
+    background-color: #c4a066;
+    border-color: #c4a066;
+}
+
+.back-to-top:hover {
+    background-color: #431b00;
+    border-color: #431b00;
+}
